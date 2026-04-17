@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield AI - Advanced Cybersecurity Assistant</title>
+    <!-- EmailJS Configuration Note - Added by AI assistant April 17, 2026
+         To enable email notifications for errors and contact form:
+         1. Sign up at https://www.emailjs.com/
+         2. Create a service, email templates for errors and contact
+         3. Replace 'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', 'YOUR_CONTACT_TEMPLATE_ID', 'YOUR_PUBLIC_KEY' with actual values
+         4. Emails will be sent to rehamandudekula280806@gmail.com
+         Error template should have: to_email, subject, message, timestamp
+         Contact template should have: from_name, from_email, message, to_email
+    -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Original :root commented out - Changed by AI assistant on April 17, 2026 for more cyber theme */
+        /*
+        :root {
+            --primary-dark: #0a0e27;
+            --secondary-dark: #0f1535;
+            --accent-cyan: #00d4ff;
+            --accent-purple: #a855f7;
+            --accent-blue: #3b82f6;
+            --neon-green: #00ff88;
+            --neon-pink: #ff006e;
+            --text-primary: #e5e7eb;
+            --text-secondary: #9ca3af;
+            --glass-bg: rgba(15, 21, 53, 0.5);
+            --glass-border: rgba(0, 212, 255, 0.2);
+        }
+        */
+
+        /* New cyber-themed :root - Added by AI assistant on April 17, 2026 for enhanced cyber aesthetics */
+        :root {
+            --primary-dark: #000000;
+            --secondary-dark: #0a0a0a;
+            --accent-cyan: #00ffff;
+            --accent-purple: #ff00ff;
+            --accent-blue: #0080ff;
+            --neon-green: #00ff00;
+            --neon-pink: #ff0080;
+            --neon-red: #ff0000;
+            --neon-yellow: #ffff00;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --glass-bg: rgba(0, 0, 0, 0.8);
+            --glass-border: rgba(0, 255, 255, 0.5);
+            --glow-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            --pulse-shadow: 0 0 30px rgba(255, 0, 255, 0.7);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Courier New', monospace; /* Changed to monospace for cyber feel - AI assistant April 17, 2026 */
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #001122 50%, var(--primary-dark) 100%);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            text-shadow: 0 0 5px var(--accent-cyan); /* Added text glow - AI assistant */
+        }
+
+        /* Enhanced animated background grid - Updated by AI assistant April 17, 2026 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(0, 255, 255, 0.1) 25%, rgba(0, 255, 255, 0.1) 26%, transparent 27%, transparent 74%, rgba(0, 255, 255, 0.1) 75%, rgba(0, 255, 255, 0.1) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(255, 0, 255, 0.1) 25%, rgba(255, 0, 255, 0.1) 26%, transparent 27%, transparent 74%, rgba(255, 0, 255, 0.1) 75%, rgba(255, 0, 255, 0.1) 76%, transparent 77%, transparent);
+            background-size: 30px 30px; /* Smaller grid for more cyber feel - AI assistant */
+            pointer-events: none;
+            z-index: 0;
+            animation: gridMove 10s linear infinite, pulse 2s ease-in-out infinite alternate; /* Added pulse animation - AI assistant */
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(30px);
+            }
+        }
+
+        /* New pulse animation - Added by AI assistant April 17, 2026 */
+        @keyframes pulse {
+            0% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Enhanced cursor glow effect - Updated by AI assistant April 17, 2026 */
+        body::after {
+            content: '';
+            position: fixed;
+            width: 500px; /* Larger glow - AI assistant */
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.2) 0%, rgba(255, 0, 255, 0.1) 50%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            display: none;
+            animation: glowPulse 3s ease-in-out infinite; /* Added glow pulse - AI assistant */
+        }
+
+        /* New glow pulse animation - Added by AI assistant April 17, 2026 */
+        @keyframes glowPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.6;
+            }
+        }
+
+        main {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Enhanced NAVBAR - Updated by AI assistant April 17, 2026 */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: linear-gradient(180deg, var(--glass-bg) 0%, transparent 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid var(--glass-border); /* Thicker border - AI assistant */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            z-index: 1000;
+            box-shadow: var(--glow-shadow), var(--pulse-shadow); /* Added multiple shadows - AI assistant */
+            animation: navGlow 2s ease-in-out infinite alternate; /* Added nav glow animation - AI assistant */
+        }
+
+        /* New nav glow animation - Added by AI assistant April 17, 2026 */
+        @keyframes navGlow {
+            0% {
+                box-shadow: var(--glow-shadow);
+            }
+            100% {
+                box-shadow: var(--pulse-shadow);
+            }
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3); /* Enhanced glow - AI assistant */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: logoFlicker 3s ease-in-out infinite; /* Added flicker animation - AI assistant */
+        }
+
+        /* New logo flicker animation - Added by AI assistant April 17, 2026 */
+        @keyframes logoFlicker {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        .logo:hover {
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px var(--accent-cyan); /* Added text glow - AI assistant */
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-cyan);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 20px;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 11px;
+            }
+        }
+
+        /* Enhanced HERO SECTION - Updated by AI assistant April 17, 2026 */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 70px;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at center, rgba(0, 255, 255, 0.05) 0%, transparent 50%); /* Added radial background - AI assistant */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px; /* Larger - AI assistant */
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.2) 0%, rgba(255, 0, 255, 0.1) 50%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite, glowRotate 10s linear infinite; /* Added rotation - AI assistant */
+            z-index: 0;
+            box-shadow: 0 0 100px rgba(0, 255, 255, 0.3); /* Added shadow - AI assistant */
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 700px; /* Larger - AI assistant */
+            height: 700px;
+            background: radial-gradient(circle, rgba(255, 0, 255, 0.2) 0%, rgba(255, 0, 0, 0.1) 50%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse, glowRotate 12s linear infinite reverse; /* Added rotation - AI assistant */
+            z-index: 0;
+            box-shadow: 0 0 100px rgba(255, 0, 255, 0.3); /* Added shadow - AI assistant */
+        }
+
+        /* New glow rotate animation - Added by AI assistant April 17, 2026 */
+        @keyframes glowRotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(30px);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+            border: 2px solid var(--glass-border); /* Added border - AI assistant */
+            border-radius: 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--glow-shadow), var(--pulse-shadow); /* Added shadows - AI assistant */
+            animation: heroPulse 4s ease-in-out infinite; /* Added pulse - AI assistant */
+        }
+
+        /* New hero pulse animation - Added by AI assistant April 17, 2026 */
+        @keyframes heroPulse {
+            0%, 100% {
+                box-shadow: var(--glow-shadow);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(0, 255, 255, 0.8), 0 0 60px rgba(255, 0, 255, 0.6);
+            }
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--neon-yellow), var(--accent-purple), var(--neon-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            animation: slideInDown 1s ease, textGlow 2s ease-in-out infinite alternate; /* Added text glow - AI assistant */
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5); /* Added shadow - AI assistant */
+        }
+
+        /* New text glow animation - Added by AI assistant April 17, 2026 */
+        @keyframes textGlow {
+            0% {
+                filter: brightness(1);
+            }
+            100% {
+                filter: brightness(1.5);
+            }
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.6;
+            animation: slideInUp 1s ease 0.2s both;
+            text-shadow: 0 0 5px var(--accent-cyan); /* Added glow - AI assistant */
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 48px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            border: none;
+            border-radius: 8px;
+            color: var(--primary-dark);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 1s ease 0.4s both;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 50px rgba(0, 212, 255, 0.6);
+        }
+
+        .cta-button:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 85vh;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+        }
+
+        /* FEATURES SECTION */
+        .features {
+            padding: 100px 40px;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 212, 255, 0.05) 50%, transparent 100%);
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 80px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.2), inset 0 0 30px rgba(0, 212, 255, 0.05);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--accent-cyan);
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .features {
+                padding: 60px 20px;
+            }
+
+            .section-title {
+                font-size: 32px;
+                margin-bottom: 50px;
+            }
+
+            .features-grid {
+                gap: 20px;
+            }
+
+            .feature-card {
+                padding: 30px;
+            }
+        }
+
+        /* CHAT SECTION */
+        .chat-section {
+            padding: 80px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .chat-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.1);
+        }
+
+        .chat-box {
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            overflow: hidden;
+            height: 500px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            animation: fadeInMessage 0.4s ease;
+            max-width: 85%;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        .message.bot {
+            align-self: flex-start;
+            margin-right: auto;
+        }
+
+        @keyframes fadeInMessage {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-bubble {
+            padding: 12px 16px;
+            border-radius: 8px;
+            word-wrap: break-word;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .message.user .message-bubble {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: var(--primary-dark);
+            border-bottom-right-radius: 2px;
+            font-weight: 600;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .message.bot .message-bubble {
+            background: rgba(168, 85, 247, 0.2);
+            border: 1px solid var(--accent-purple);
+            color: var(--text-primary);
+            border-bottom-left-radius: 2px;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-cyan);
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                opacity: 0.3;
+                transform: translateY(0);
+            }
+            30% {
+                opacity: 1;
+                transform: translateY(-10px);
+            }
+        }
+
+        .chat-input-area {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+            border-top: 1px solid var(--glass-border);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 6px;
+            padding: 10px 15px;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .chat-input-area input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .chat-input-area input:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            background: rgba(0, 212, 255, 0.05);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+        }
+
+        .send-btn {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            border: none;
+            border-radius: 6px;
+            color: var(--primary-dark);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+        }
+
+        .send-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.4);
+        }
+
+        .quick-queries {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .quick-query-btn {
+            padding: 12px 16px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 6px;
+            color: var(--accent-cyan);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: left;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .quick-query-btn:hover {
+            background: rgba(0, 212, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .quick-query-section h4 {
+            color: var(--text-secondary);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 1024px) {
+            .chat-container {
+                grid-template-columns: 1fr;
+            }
+
+            .chat-box {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .chat-section {
+                padding: 60px 20px;
+            }
+
+            .chat-container {
+                gap: 20px;
+                padding: 20px;
+            }
+        }
+
+        /* REPORTS SECTION */
+        .reports {
+            padding: 100px 40px;
+            background: linear-gradient(180deg, transparent 0%, rgba(168, 85, 247, 0.05) 50%, transparent 100%);
+            position: relative;
+            z-index: 2;
+        }
+
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 60px auto 0;
+        }
+
+        .stat-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 30px;
+            backdrop-filter: blur(20px);
+            transition: all 0.4s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(168, 85, 247, 0.2);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            animation: countUp 2s ease forwards;
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .stat-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+        .stat-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            border-radius: 3px;
+            animation: fillBar 2s ease forwards;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+        }
+
+        @keyframes fillBar {
+            from {
+                width: 0;
+            }
+            to {
+                width: var(--fill-percentage, 75%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .reports {
+                padding: 60px 20px;
+            }
+
+            .stat-card {
+                padding: 20px;
+            }
+
+            .stat-number {
+                font-size: 36px;
+            }
+        }
+
+        /* CONTACT SECTION */
+        .contact {
+            padding: 100px 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 60px auto 0;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            background: rgba(0, 212, 255, 0.05);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            border: none;
+            border-radius: 6px;
+            color: var(--primary-dark);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 50px rgba(0, 212, 255, 0.5);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .contact {
+                padding: 60px 20px;
+            }
+
+            .contact-form {
+                padding: 30px 20px;
+            }
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 40px;
+            text-align: center;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--glass-border);
+            background: rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+            font-size: 14px;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--accent-cyan), var(--accent-purple));
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--accent-purple), var(--accent-cyan));
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo" onclick="scrollToSection('hero')">⚡ CyberShield</div>
+        <ul>
+            <li><a href="#" onclick="event.preventDefault(); scrollToSection('hero')">Home</a></li>
+            <li><a href="#" onclick="event.preventDefault(); scrollToSection('features')">Features</a></li>
+            <li><a href="#" onclick="event.preventDefault(); scrollToSection('chat')">Chat</a></li>
+            <li><a href="#" onclick="event.preventDefault(); scrollToSection('reports')">Reports</a></li>
+            <li><a href="#" onclick="event.preventDefault(); scrollToSection('contact')">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>AI-Powered Cybersecurity Assistant</h1>
+                <p>Real-time threat detection, phishing analysis, and intelligent security insights. Protect your digital assets with cutting-edge AI technology.</p>
+                <button class="cta-button" onclick="scrollToSection('chat')">Start Chat Now</button>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <h2 class="section-title">Core Capabilities</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Threat Detection</h3>
+                    <p>Advanced AI algorithms to identify and analyze emerging cyber threats in real-time with 99.8% accuracy.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎣</div>
+                    <h3>Phishing Analysis</h3>
+                    <p>Detect sophisticated phishing attempts and suspicious links before they compromise your security.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Malware Awareness</h3>
+                    <p>Comprehensive malware classification and behavioral analysis to prevent zero-day exploits.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚠️</div>
+                    <h3>Real-Time Protection</h3>
+                    <p>Instant alerts and actionable security recommendations for continuous protection 24/7.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Risk Analytics</h3>
+                    <p>Deep security analytics with predictive modeling to assess and mitigate future vulnerabilities.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>Compliance Guidance</h3>
+                    <p>Stay compliant with GDPR, HIPAA, and ISO 27001 standards with automated compliance checks.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chat Section -->
+        <section id="chat" class="chat-section">
+            <h2 class="section-title">Interactive Security Assistant</h2>
+            <div class="chat-container">
+                <div class="chat-box">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message bot">
+                            <div class="message-bubble">
+                                👋 Welcome to CyberShield AI! I'm your advanced cybersecurity assistant. Ask me anything about threats, vulnerabilities, or security best practices.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chatInput" placeholder="Ask about cybersecurity, threats, or protection..." onkeypress="handleKeyPress(event)">
+                        <button class="send-btn" onclick="sendMessage()">Send</button>
+                    </div>
+                </div>
+                <div class="quick-queries">
+                    <div class="quick-query-section">
+                        <h4>Quick Actions</h4>
+                        <button class="quick-query-btn" onclick="askQuestion('What is a zero-day vulnerability?')">What is a zero-day vulnerability?</button>
+                        <button class="quick-query-btn" onclick="askQuestion('How do I identify phishing emails?')">How do I identify phishing emails?</button>
+                        <button class="quick-query-btn" onclick="askQuestion('Explain ransomware and its prevention')">Explain ransomware and its prevention</button>
+                        <button class="quick-query-btn" onclick="askQuestion('What are the best password practices?')">What are the best password practices?</button>
+                        <button class="quick-query-btn" onclick="askQuestion('How does two-factor authentication work?')">How does two-factor authentication work?</button>
+                        <button class="quick-query-btn" onclick="askQuestion('Check if this URL is safe')">Check if this URL is safe</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="reports" class="reports">
+            <h2 class="section-title">Security Dashboard</h2>
+            <div class="reports-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="threatCount">2,847</div>
+                    <div class="stat-label">Threats Detected</div>
+                    <div class="stat-bar">
+                        <div class="stat-bar-fill" style="--fill-percentage: 85%"></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="threatLevel">94%</div>
+                    <div class="stat-label">Security Score</div>
+                    <div class="stat-bar">
+                        <div class="stat-bar-fill" style="--fill-percentage: 94%"></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="phishingBlocked">1,204</div>
+                    <div class="stat-label">Phishing Attempts Blocked</div>
+                    <div class="stat-bar">
+                        <div class="stat-bar-fill" style="--fill-percentage: 78%"></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="systemHealth">100%</div>
+                    <div class="stat-label">System Health</div>
+                    <div class="stat-bar">
+                        <div class="stat-bar-fill" style="--fill-percentage: 100%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <h2 class="section-title">Get In Touch</h2>
+            <form class="contact-form" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Your name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea placeholder="Tell us how we can help..." required></textarea>
+                </div>
+                <button class="submit-btn" type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 CyberShield AI. Advanced Cybersecurity Solutions. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Cybersecurity knowledge base for AI responses
+        const cybersecurityKnowledge = {
+            'zero-day': {
+                keywords: ['zero-day', 'vulnerability', 'exploit'],
+                response: 'A zero-day vulnerability is a security flaw unknown to software vendors. Attackers exploit it before developers can patch it. These are highly valuable in cyber attacks because there\'s no immediate defense. Protection involves behavioral analysis and sandboxing.'
+            },
+            'phishing': {
+                keywords: ['phishing', 'phishing email', 'identify phishing'],
+                response: 'Phishing emails mimic trusted sources to steal credentials. Key signs: suspicious sender addresses, urgent language, suspicious links, requests for personal info, and poor grammar. Always verify sender identity independently and hover over links before clicking.'
+            },
+            'ransomware': {
+                keywords: ['ransomware', 'prevention', 'ransomware prevention'],
+                response: 'Ransomware encrypts your files and demands payment for decryption. Prevention: keep backups offline, update software regularly, use email filters, train employees on phishing, and maintain endpoint protection. Never pay ransom—it funds criminals and doesn\'t guarantee file recovery.'
+            },
+            'password': {
+                keywords: ['password', 'password practices', 'strong password'],
+                response: 'Best password practices: use 12+ characters mixing uppercase, lowercase, numbers, and symbols. Avoid personal information, common words, and reusing passwords. Use a password manager, enable two-factor authentication, and never share credentials via email or chat.'
+            },
+            '2fa': {
+                keywords: ['two-factor', '2fa', 'authentication'],
+                response: 'Two-factor authentication (2FA) adds a second verification layer. After entering your password, you provide a second factor: SMS code, authenticator app, or biometric. This prevents unauthorized access even if your password is compromised. Authenticator apps are more secure than SMS.'
+            },
+            'url-safe': {
+                keywords: ['url', 'safe', 'check url', 'link safe'],
+                response: 'To check if a URL is safe: hover over links to see the actual destination, check SSL certificate (look for padlock), use URL scanners like VirusTotal or URLhaus, verify domain spelling, and be suspicious of shortened URLs. Legitimate sites never ask for passwords via email links.'
+            },
+            'mfa': {
+                keywords: ['mfa', 'multi-factor', 'security'],
+                response: 'Multi-factor authentication (MFA) requires multiple verification methods (password + code + biometric, for example). It\'s significantly more secure than single-factor authentication. Organizations now require MFA for compliance with GDPR, HIPAA, and ISO 27001.'
+            },
+            'vpn': {
+                keywords: ['vpn', 'virtual private network', 'privacy'],
+                response: 'A VPN (Virtual Private Network) encrypts your internet traffic and masks your IP address. Use it on public Wi-Fi to prevent man-in-the-middle attacks. Choose reputable VPN providers with strong encryption (AES-256), no-log policies, and proven security audits.'
+            },
+            'firewall': {
+                keywords: ['firewall', 'network security'],
+                response: 'A firewall monitors incoming/outgoing network traffic based on predetermined security rules. Personal firewalls protect individual devices; network firewalls protect entire networks. They block unauthorized access but need configuration to balance security and usability.'
+            },
+            'default': {
+                response: 'I can help with cybersecurity questions! Ask me about threat detection, phishing identification, malware prevention, password security, two-factor authentication, compliance standards, network security, or any other security concern. What would you like to know?'
+            }
+        };
+
+        // Get AI response based on user query
+        function getAIResponse(userMessage) {
+            const lowerMessage = userMessage.toLowerCase();
+            
+            for (const [key, data] of Object.entries(cybersecurityKnowledge)) {
+                if (key !== 'default' && data.keywords.some(keyword => lowerMessage.includes(keyword))) {
+                    return data.response;
+                }
+            }
+            
+            return cybersecurityKnowledge.default.response;
+        }
+
+        // Scroll to section
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Chat functionality
+        function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+
+    if (!message) return;
+
+    const chatMessages = document.getElementById('chatMessages');
+
+    const userDiv = document.createElement('div');
+    userDiv.className = 'message user';
+    userDiv.innerHTML = `<div class="message-bubble">${escapeHtml(message)}</div>`;
+    chatMessages.appendChild(userDiv);
+
+    input.value = '';
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    setTimeout(() => {
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'message bot';
+        typingDiv.id = 'typingIndicator';
+        typingDiv.innerHTML = `
+            <div class="message-bubble">
+                <div class="typing-indicator">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            </div>
+        `;
+        chatMessages.appendChild(typingDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        fetch("http://127.0.0.1:5000/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ message: message })
+        })
+        .then(res => res.json())
+        .then(data => {
+            const typingEl = document.getElementById('typingIndicator');
+            if (typingEl) typingEl.remove();
+
+            const botDiv = document.createElement('div');
+            botDiv.className = 'message bot';
+            botDiv.innerHTML = `<div class="message-bubble">${data.reply}</div>`;
+            chatMessages.appendChild(botDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        })
+        .catch(error => {
+            console.error(error);
+
+            const typingEl = document.getElementById('typingIndicator');
+            if (typingEl) typingEl.remove();
+
+            alert("Error connecting to AI server");
+
+            // Send error notification email - Added by AI assistant April 17, 2026
+            sendErrorEmail(error.toString());
+        });
+
+    }, 300);
+}
+
+        function askQuestion(question) {
+            document.getElementById('chatInput').value = question;
+            sendMessage();
+        }
+
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            // Send contact email - Updated by AI assistant April 17, 2026
+            const formData = new FormData(e.target);
+            const templateParams = {
+                from_name: formData.get('name'),
+                from_email: formData.get('email'),
+                message: formData.get('message'),
+                to_email: 'rehamandudekula280806@gmail.com' // User's email - Updated by AI assistant April 17, 2026
+            };
+
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_CONTACT_TEMPLATE_ID', templateParams)
+                .then(function(response) {
+                    alert('Thank you! Your message has been sent. We\'ll get back to you soon.');
+                    e.target.reset();
+                }, function(error) {
+                    alert('Failed to send message. Please try again.');
+                    console.error('Email send error:', error);
+                });
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Cursor glow effect (optional enhancement)
+        document.addEventListener('mousemove', (e) => {
+            const glow = document.querySelector('body::after');
+            // Note: CSS pseudo-element glow effect is handled in CSS
+        });
+
+        // Animation on scroll for stats
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideInUp 0.6s ease forwards';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.feature-card, .stat-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // EmailJS initialization - Added by AI assistant April 17, 2026 for error notifications
+        // Note: Replace 'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', 'YOUR_PUBLIC_KEY' with actual EmailJS credentials
+        // And replace 'your-email@example.com' with your email address
+        emailjs.init('YOUR_PUBLIC_KEY'); // Initialize EmailJS with your public key
+
+        // Function to send error notification email - Added by AI assistant April 17, 2026
+        function sendErrorEmail(errorMessage) {
+            const templateParams = {
+                to_email: 'rehamandudekula280806@gmail.com', // User's email - Updated by AI assistant April 17, 2026
+                subject: 'CyberShield AI Error Notification',
+                message: `An error occurred in the CyberShield AI chatbot: ${errorMessage}`,
+                timestamp: new Date().toISOString()
+            };
+
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+                .then(function(response) {
+                    console.log('Error notification email sent successfully', response.status, response.text);
+                }, function(error) {
+                    console.error('Failed to send error notification email', error);
+                });
+        }
+    </script>
+    <!-- EmailJS script - Added by AI assistant April 17, 2026 -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</body>
+</html>
