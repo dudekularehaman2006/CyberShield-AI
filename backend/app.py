@@ -6,10 +6,7 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-# Load the Groq API key securely from the environment
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
-
-# Initialize Groq client only if the key is available
 client = Groq(api_key=GROQ_API_KEY) if GROQ_API_KEY else None
 
 @app.route("/chat", methods=["POST"])
@@ -39,5 +36,7 @@ def chat():
         print("Groq error:", type(e).__name__, e)
         return jsonify({"reply": f"Groq error: {e}"}), 500
 
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
