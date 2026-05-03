@@ -96,9 +96,16 @@ open frontend/index.html
 
 ---
 
-## 📸 Screenshots
+## 📸 Screenshots  
 
-*Add screenshots here*
+### 🏠 Home Page  
+![Home](screenshots/home.png)
+
+### 💬 Chat Interface  
+![Chat](screenshots/chat.png)
+
+### ⚙️ Core Features  
+![Features](screenshots/core-features.png)
 
 ---
 
