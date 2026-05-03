@@ -1,244 +1,122 @@
-\# 🔐 CyberShield AI – Cybersecurity Assistant
+# 🔐 CyberShield AI – Cybersecurity Assistant
 
+![HTML](https://img.shields.io/badge/Frontend-HTML%2FCSS%2FJS-blue)
+![Python](https://img.shields.io/badge/Backend-Flask-green)
+![AI](https://img.shields.io/badge/AI-Groq%20LLaMA-orange)
+![Status](https://img.shields.io/badge/Status-Deployed-success)
 
+---
 
-CyberShield AI is an AI-powered web application that helps users understand cybersecurity threats and best practices through an interactive chatbot.
+## 🌐 Live Demo
 
+👉 https://dudekularehaman2006.github.io/CyberShield-AI/
 
+---
 
-🌐 \*\*Live Demo:\*\*
+## 🚀 Features
 
-https://dudekularehaman2006.github.io/CyberShield-AI/
+* 🤖 AI-powered cybersecurity chatbot
+* 🎣 Phishing detection guidance
+* 🛡 Malware awareness
+* 🔐 Password security practices
+* ⚡ Real-time AI responses
+* 🌐 Fully deployed system
 
+---
 
+## 🧠 Tech Stack
 
-\---
+| Layer    | Technology            |
+| -------- | --------------------- |
+| Frontend | HTML, CSS, JavaScript |
+| Backend  | Flask (Python)        |
+| AI Model | Groq (LLaMA 3.1)      |
+| Hosting  | GitHub Pages + Render |
 
+---
 
+## 🏗️ System Architecture
 
-\## 🚀 Features
-
-
-
-\* 🤖 AI-powered cybersecurity chatbot
-
-\* 🎣 Phishing detection guidance
-
-\* 🛡 Malware awareness
-
-\* 🔐 Password security best practices
-
-\* ⚡ Real-time responses using Groq AI
-
-\* 🌐 Fully deployed (Frontend + Backend)
-
-
-
-\---
-
-
-
-\## 🧠 Tech Stack
-
-
-
-\* \*\*Frontend:\*\* HTML, CSS, JavaScript
-
-\* \*\*Backend:\*\* Python (Flask)
-
-\* \*\*AI Model:\*\* Groq (LLaMA 3.1)
-
-\* \*\*Deployment:\*\*
-
-
-
-&#x20; \* Frontend → GitHub Pages
-
-&#x20; \* Backend → Render
-
-
-
-\---
-
-
-
-\## 🏗️ System Architecture
-
-
-
+```id="arch1"
 User → Frontend → Flask API → Groq AI → Response → UI
+```
 
+---
 
+## ⚙️ Installation
 
-\---
+### 1️⃣ Clone Repository
 
-
-
-\## ⚙️ Installation (Local Setup)
-
-
-
-\### 1. Clone the repository
-
-
-
-```bash
-
+```bash id="cmd1"
 git clone https://github.com/dudekularehaman2006/CyberShield-AI.git
-
 cd CyberShield-AI
-
 ```
 
+---
 
+### 2️⃣ Setup Backend
 
-\---
-
-
-
-\### 2. Setup backend
-
-
-
-```bash
-
+```bash id="cmd2"
 cd backend
-
 pip install -r requirements.txt
-
 ```
 
+---
 
+### 3️⃣ Add API Key
 
-\---
-
-
-
-\### 3. Add API key
-
-
-
-Create `.env` file:
-
-
-
-```env
-
-GROQ\_API\_KEY=your\_api\_key\_here
-
+```env id="env1"
+GROQ_API_KEY=your_api_key_here
 ```
 
+---
 
+### 4️⃣ Run Backend
 
-\---
-
-
-
-\### 4. Run backend
-
-
-
-```bash
-
+```bash id="cmd3"
 python app.py
-
 ```
 
+---
 
+### 5️⃣ Run Frontend
 
-\---
-
-
-
-\### 5. Run frontend
-
-
-
-Open:
-
-
-
-```bash
-
-frontend/index.html
-
+```bash id="cmd4"
+open frontend/index.html
 ```
 
+---
 
+## 🌐 Deployment
 
-\---
+* Frontend → GitHub Pages
+* Backend → Render
 
+⚠️ *Note: First response may take 10–20 seconds due to server cold start.*
 
+---
 
-\## 🌐 Deployment
+## 📸 Screenshots
 
+*Add screenshots here*
 
+---
 
-\* Frontend hosted on GitHub Pages
+## 🚀 Future Scope
 
-\* Backend hosted on Render
+* Real-time threat detection APIs
+* User authentication system
+* Mobile app
+* AI fine-tuning
 
+---
 
+## 👨‍💻 Author
 
-⚠️ Note: Backend may take 10–20 seconds on first request due to free hosting (cold start).
+**Rehaman Dudekula**
 
+---
 
+## ⭐ Support
 
-\---
-
-
-
-\## 📸 Screenshots
-
-
-
-(Add screenshots of your UI here — highly recommended)
-
-
-
-\---
-
-
-
-\## 🚀 Future Improvements
-
-
-
-\* Real-time threat detection APIs
-
-\* User authentication system
-
-\* Improved UI/UX
-
-\* Mobile app version
-
-\* AI fine-tuning
-
-
-
-\---
-
-
-
-\## 👨‍💻 Author
-
-
-
-\*\*Rehaman Dudekula\*\*
-
-Cybersecurity \& Cloud Enthusiast
-
-
-
-\---
-
-
-
-\## ⭐ Support
-
-
-
-If you like this project, give it a ⭐ on GitHub!
-
-
-
+If you like this project, give it a ⭐
