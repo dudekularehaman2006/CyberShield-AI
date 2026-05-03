@@ -99,13 +99,13 @@ open frontend/index.html
 ## 📸 Screenshots  
 
 ### 🏠 Home Page  
-![Home](screenshots/home.png)
+![Home](https://raw.githubusercontent.com/dudekularehaman2006/CyberShield-AI/main/screenshots/home.png)
 
 ### 💬 Chat Interface  
-![Chat](screenshots/chat.png)
+![Chat](https://raw.githubusercontent.com/dudekularehaman2006/CyberShield-AI/main/screenshots/chat.png)
 
 ### ⚙️ Core Features  
-![Features](screenshots/core-features.png)
+![Features](https://raw.githubusercontent.com/dudekularehaman2006/CyberShield-AI/main/screenshots/core-features.png)
 
 ---
 
